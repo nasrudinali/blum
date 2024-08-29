@@ -11,6 +11,9 @@ import random
 import re
 import sys
 import tzlocal
+import time
+
+
 
 class Blum:
     def __init__(self) -> None:
@@ -27,6 +30,16 @@ class Blum:
             'User-Agent': FakeUserAgent().random
         }
 
+    def hitung_mundur(detik):
+    while detik:
+        mins, secs = divmod(detik, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        detik -= 1
+    
+    print("Waktu telah habis!") 
+    
     def clear_terminal(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -405,7 +418,8 @@ class Blum:
                     self.print_timestamp(f"{Fore.CYAN + Style.BRIGHT}[ {account['username']} ]{Style.RESET_ALL}")
                     await self.balance_friends(token=account['token'])
                 self.print_timestamp(f"{Fore.CYAN + Style.BRIGHT}[ Restarting Soon ]{Style.RESET_ALL}")
-                await asyncio.sleep(3600)
+                detik = 60 * 60
+                hitung_mundur(detik)
                 self.clear_terminal()
             except Exception as e:
                 self.print_timestamp(f"{Fore.RED + Style.BRIGHT}[ {str(e)} ]{Style.RESET_ALL}")
