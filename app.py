@@ -219,8 +219,7 @@ class Blum:
                             f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
                             f"{Fore.BLUE + Style.BRIGHT}[ Please Wait 30 Seconds ]{Style.RESET_ALL}"
                         )
-                        detik = 31
-                        hitung_mundur(detik)
+                        await asyncio.sleep(31)
                         await self.claim_game(token=token, game_id=game_play['gameId'], points=random.randint(1000, 1001))
                 except aiohttp.ClientResponseError as e:
                     if e.status == 400:
