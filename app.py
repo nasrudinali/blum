@@ -13,7 +13,15 @@ import sys
 import tzlocal
 import time
 
-
+def hitung_mundur(detik):
+    while detik:
+        mins, secs = divmod(detik, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        detik -= 1
+    
+    print("Waktu telah habis!")
 
 class Blum:
     def __init__(self) -> None:
@@ -28,17 +36,7 @@ class Blum:
             'Sec-Fetch-Mode': 'cors',
             'Sec-Fetch-Site': 'same-site',
             'User-Agent': FakeUserAgent().random
-        }
-
-    def hitung_mundur(detik):
-    while detik:
-        mins, secs = divmod(detik, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end="\r")
-        time.sleep(1)
-        detik -= 1
-    
-    print("Waktu telah habis!") 
+        } 
     
     def clear_terminal(self):
         os.system('cls' if os.name == 'nt' else 'clear')
